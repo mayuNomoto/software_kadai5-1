@@ -23,6 +23,9 @@ public class IntToEng {
     	else if(n<1000) {
     		ans = solve3(n);
     	}
+    	else if(n<100000) {
+    		ans = solve4(n);
+    	}
         return ans;
     }
     static String solve1(int n) {
@@ -51,7 +54,7 @@ public class IntToEng {
     }
     static String solve2(int n) {
     	int b;//10の位の数
-    	b=n%10;
+    	b=n/10;
     	String ans = null;
     	if(b == 2)ans="twenty";
     	if(b == 3)ans="thirty";
@@ -71,8 +74,29 @@ public class IntToEng {
     	return ans;
     }
     static String solve3(int n) {
-    	String ans = null;
+    	int c;//100の位の数
+    	String ans=null;
+    	c=n/100;
+    	ans=ans+solve1(c)+" hundred ";
+    	if((n-c)<=19)
+    		ans = ans+ solve1(n-c);
+    	else if((n-c)<=99)
+    		ans = ans+solve2(n-c);
+    	
     	return ans;
     	
+    }
+    static String solve4(int n) {
+    	int d;//1000の位の数
+    	String ans=null;
+    	d=n/10000;
+    	if(d>99) {
+    		ans=ans+solve3(d)+" thousand "+solve3(n-d);
+    	}
+    	else { 
+    	ans=ans+solve1(d)+" thousand ";
+    	ans=ans+solve3(n-d);
+    	}
+    	return ans;
     }
 }
