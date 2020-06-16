@@ -45,6 +45,22 @@ public class test {
 			
 		
 	}
+	@Test
+	public void IntToEngで100000から1000000000までを英語に変換できる() {
+			IntToEng ite = new IntToEng();
+			String expected = "seventeen million two hundred fifty three thousand nine hundred sixty four";
+			String actual = ite.solve5(17253964);
+			assertThat(actual, is(expected));
+			
+	}
+	@Test
+	public void IntToEngで1000000000からintの範囲まで英語に変換できる() {
+		IntToEng ite = new IntToEng();
+		String expected = "one billion seven hundred twenty five million three hundred ninety six thousand four hundred eighty five";
+		String actual = ite.solve6(1725396485);
+		assertThat(actual, is(expected));
+	}
+
 
 
 }

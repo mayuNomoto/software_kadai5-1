@@ -4,10 +4,7 @@ public class IntToEng {
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
         int input = sc.nextInt();
-        
-			System.out.println(translateEng(input));
-		
-			
+        System.out.println(translateEng(input));
     }
 
     // 数値を英訳する変換するメソッド
@@ -81,27 +78,23 @@ public class IntToEng {
     }
     static String solve3(int n) {
     	int c;//100の位の数
-    	String ans=null;
+    	String ans = null;
     	c=n/100;
-    	ans=ans+solve1(c)+" hundred ";
-    	if((n-c)<=19)
-    		ans = ans+ solve1(n-c);
-    	else if((n-c)<=99)
-    		ans = ans+solve2(n-c);
-    	
+    	ans=translateEng(c)+" hundred";
+    	if((n-c*100) != 0) {
+    	ans = ans + " " +translateEng(n-c*100);
+    	}
+    	    	
     	return ans;
     	
     }
     static String solve4(int n) {
     	int d;//1000の位の数
     	String ans=null;
-    	d=n/10000;
-    	if(d>99) {
-    		ans=ans+solve3(d)+" thousand "+solve3(n-d);
-    	}
-    	else { 
-    	ans=ans+solve1(d)+" thousand ";
-    	ans=ans+solve3(n-d);
+    	d=n/1000;
+    	ans = translateEng(d)+" thousand";
+    	if(n-d*1000 != 0) {
+    	ans = ans + " " +translateEng(n-d*1000);
     	}
     	return ans;
     }
@@ -109,15 +102,20 @@ public class IntToEng {
     	int e;//1000000の位の数
     	String ans =null;
     	e=n/1000000;
-    	ans= ans+ translateEng(e) +" million ";
-    	ans= ans + translateEng(n-e*1000000);
+    	ans= translateEng(e) +" million";
+    	if(n-e*1000000 != 0) {
+    	ans= ans +" "+ translateEng(n-e*1000000);
+    	}
     return ans;
     	}
     static String solve6(int n) {
     	int f;//1000000000の位の数
     	String ans=null;
     	f=n/1000000000;
-     ans=ans+solve1(f);
+    	ans = translateEng(f) + " billion";
+    	if(n-f*1000000000 != 0) {
+    		ans = ans + " " + translateEng(n-f*1000000000);
+    	}
      return ans;
 }
 }
