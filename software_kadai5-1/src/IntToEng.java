@@ -23,8 +23,14 @@ public class IntToEng {
     	else if(n<1000) {
     		ans = solve3(n);
     	}
-    	else if(n<100000) {
+    	else if(n<1000000) {
     		ans = solve4(n);
+    	}
+    	else if(n<1000000000) {
+    		ans = solve5(n);
+    	}
+    	else if(n<=2147483647) {
+    		ans = solve6(n);
     	}
         return ans;
     }
@@ -99,4 +105,19 @@ public class IntToEng {
     	}
     	return ans;
     }
+    static String solve5(int n){
+    	int e;//1000000の位の数
+    	String ans =null;
+    	e=n/1000000;
+    	ans= ans+ translateEng(e) +" million ";
+    	ans= ans + translateEng(n-e*1000000);
+    return ans;
+    	}
+    static String solve6(int n) {
+    	int f;//1000000000の位の数
+    	String ans=null;
+    	f=n/1000000000;
+     ans=ans+solve1(f);
+     return ans;
+}
 }
