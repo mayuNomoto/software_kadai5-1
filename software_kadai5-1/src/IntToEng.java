@@ -1,17 +1,33 @@
 import java.util.Scanner;
+import java.io.*;
+
 public class IntToEng {
     // メインメソッド
     public static void main(String[] args) {
-        Scanner sc = new Scanner(System.in);
-        int input = sc.nextInt();
-        System.out.println(translateEng(input));
+    	int input=0;
+    	Scanner sc = new Scanner(System.in);
+       try {
+    	   while(sc.hasNext()) {
+    		   input = sc.nextInt();
+    		   if(input==-1) break;
+    		   System.out.println(translateEng(input));
+    		   
+    	  }
+       }
+       catch(Exception e){
+        	System.out.println("int型の範囲外です。");
+        	System.out.println("異なる数字を入力してください。");
+       }
+        
+        
     }
 
     // 数値を英訳する変換するメソッド
     //桁数で場合分けを行う
     static String translateEng(int n) {
     	String ans = null;
-    	if(n<=19) {
+    		if(n<=19) {
+    	
     		ans = solve1(n);
     	}
     	else if(n<100) {
@@ -29,6 +45,7 @@ public class IntToEng {
     	else if(n<=2147483647) {
     		ans = solve6(n);
     	}
+    	
         return ans;
     }
     static String solve1(int n) {
